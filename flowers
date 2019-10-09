@@ -1,0 +1,91 @@
+import os
+import glob
+import cv2
+from  numpy import *
+from matplotlib import pyplot as plt
+
+
+list={}
+path={'daisy','sunflower','roses'}
+j=1
+l=[]
+for folder in path:
+    i=1
+    
+    for g in glob.glob("C:/Users/Dr Diban/Desktop/K-Means/"+folder+"\*.jpg"):
+        img=cv2.imread(g)
+        scale_height=128/size(img,0)
+        scale_width=128/size(img,1)
+
+        height=int(ceil(img.shape[0]*scale_height))
+        width=int(ceil(img.shape[1]*scale_width))
+
+        dimension=(width,height)
+
+        resized=cv2.resize(img,dimension,interpolation=cv2.INTER_AREA)
+        new_img=reshape(resized,(128*128*3))
+        
+        
+        cv2.imwrite('C:/Users/Dr Diban/Desktop/K-Means/Data/%s%s.jpg'%(folder,i),resized)
+        
+        l.append(new_img.tolist())
+        
+        list[j]='%s %s'%(folder,i)
+        i+=1       
+        j+=1
+print(list)
+        
+s=asarray(l)
+X=s/255
+K=3
+ODC=array(zeros((K, size(X, 1))))
+ODC=ODC.astype(float64)
+
+centroids=array(zeros((K, size(X, 1))))
+centroids=centroids.astype(float64)
+OP=unique(X,axis=0)
+randidx=random.permutation(size(OP, 0))
+centroids=OP[randidx[0:K],:]
+jb=array(zeros((size(X,0),K)))
+jb=jb.astype(float64)
+idx=array(zeros((size(X,0),1)))
+idx=idx.astype(uint64)
+
+for j in range(10):
+
+    for i in range(K):
+        jb[:,i]=sum(power((centroids[i,:]-X),2),axis=1)
+    
+    for i in range(size(X,0)):
+        idx[i,:]=amin(where(jb[i,:]==amin(jb[i,:],axis=0)))
+      
+    for i in range(K):  
+        sel=where(idx==i)
+        centroids[i,:]=mean(X[sel[0],:],0)
+    
+    Error=sum(ODC-centroids)
+    ODC=centroids
+    
+    print(Error)
+
+
+for k in range(K):
+
+    sel=where(idx==k)
+    Total=len(sel[0])
+    lenght=int(sqrt(Total))
+    width1=ceil(Total/lenght)
+
+    
+    for m in range(Total):
+        
+        X_recovered = X[sel[0][m],:]*255
+        X_recovered=X_recovered.astype(uint8)
+        X_recovered=reshape(X_recovered,(128,128,3))
+        X_recovered=cv2.cvtColor(X_recovered,cv2.COLOR_BGR2RGB)
+        plt.subplot(lenght,width1,(m+1))
+        plt.axis('Off')
+        plt.grid(False)
+        plt.imshow(X_recovered)
+    
+    plt.show()
