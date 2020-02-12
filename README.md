@@ -10,7 +10,7 @@ Sunflower
   <img src="Images/Sunflower/HELI-2989-A_h.jpg" width="100">
   <img src="Images/Sunflower/images%20(1).jpg" width="100">
   <img src="Images/Sunflower/images%20(2).jpg" width="100">
-  <img src="Images/Sunflower/imagesjpg" width="100">
+  <img src="Images/Sunflower/images.jpg" width="100">
   <img src="Images/Sunflower/Sunflower-Black-Mammoth-Flower-Annual-Mckenzie-Seeds_1400x.jpg" width="100">
   <img src="Images/Sunflower/Sunflower-Sunspot-Flower-Annual-Mckenzie-Seeds_1400x.jpg" width="100">
   <img src="Images/Sunflower/teddybear_sunflower_500.jpg" width="100">
