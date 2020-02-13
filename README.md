@@ -43,3 +43,10 @@ Roses
   <img src="Images/Roses/imageService.jpg" width="100">
   <img src="Images/Roses/photo-1537454959372-885b35677ef5.jpg" width="100">
 </p>
+
+## Result
+3 centroids are chosen since there are three different flower types
+The initial values for the 3 centroids are randomly chosen from the 30 images of flowers
+The model is run for 100 times with each time the values for the 3 centroids chosen randomly
+At each run, the iteration is carried out 10 times
+
