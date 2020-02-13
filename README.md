@@ -68,5 +68,5 @@ The table below show the values of the key criterias that were tracked and calcu
 
 The optimum classification for the images are shown in the figures below:
 
-
+<img src="Images/Result/Class1.png" width="400">
 
