@@ -66,5 +66,7 @@ The table below show the values of the key criterias that were tracked and calcu
 | Average | 2.69 | 116300.95 |
 | Standard Deviation | 1.37 | 3103.11 |
 
+The optimum classification for the images are shown in the figures below:
+
 
 
