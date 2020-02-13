@@ -69,11 +69,14 @@ The table below show the values of the key criterias that were tracked and calcu
 The optimum classification for the images are shown in the figures below:
 
 Class 1
+
 <img src="Images/Result/Class1.png" width="400">
 
 Class 2
+
 <img src="Images/Result/Class2.png" width="400">
 
 Class 3
+
 <img src="Images/Result/Class3.png" width="400">
 
