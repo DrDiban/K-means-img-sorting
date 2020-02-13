@@ -6,7 +6,7 @@ from matplotlib import pyplot as plt
 
 
 list={}
-path={'daisy','sunflower','roses'}
+path=['daisy','sunflower','roses']
 j=1
 l=[]
 for folder in path:
@@ -38,45 +38,86 @@ print(list)
 s=asarray(l)
 X=s/255
 K=3
-ODC=array(zeros((K, size(X, 1))))
-ODC=ODC.astype(float64)
+
 
 centroids=array(zeros((K, size(X, 1))))
 centroids=centroids.astype(float64)
-OP=unique(X,axis=0)
-randidx=random.permutation(size(OP, 0))
-centroids=OP[randidx[0:K],:]
-jb=array(zeros((size(X,0),K)))
-jb=jb.astype(float64)
-idx=array(zeros((size(X,0),1)))
-idx=idx.astype(uint64)
+optidx=array(zeros((size(X,0),1)))
+optidx=optidx.astype(uint64)
 
-for j in range(10):
 
-    for i in range(K):
-        jb[:,i]=sum(power((centroids[i,:]-X),2),axis=1)
+errlist=[]
+itrlist=[]
+opterr=10000000
+
+for r in range(100):
+    itr=0
+    jb=array(zeros((size(X,0),K)))
+    jb=jb.astype(float64)
+    idx=array(zeros((size(X,0),1)))
+    idx=idx.astype(uint64)
+
+
+    minval=array(zeros((size(X,0),1)))
+    minval=minval.astype(uint64)
+    ODC=array(zeros((K, size(X, 1))))
+    ODC=ODC.astype(float64)
+    OP=unique(X,axis=0)
+    randidx=random.permutation(size(OP, 0))
+    centroids=OP[randidx[0:K],:]
     
-    for i in range(size(X,0)):
-        idx[i,:]=amin(where(jb[i,:]==amin(jb[i,:],axis=0)))
+    for j in range(10):
+        
+        
+        for a in range(K):
+            jb[:,a]=sum(power((centroids[a,:]-X),2),axis=1)
+    
+        for b in range(size(X,0)):
+            idx[b,:]=amin(where(jb[b,:]==amin(jb[b,:],axis=0)))
+            minval[b,:]=sum(amin(jb[b,:],axis=0))
+
+        for c in range(K):  
+            sel=where(idx==c)
+            centroids[c,:]=mean(X[sel[0],:],0)
       
-    for i in range(K):  
-        sel=where(idx==i)
-        centroids[i,:]=mean(X[sel[0],:],0)
-    
-    Error=sum(ODC-centroids)
-    ODC=centroids
-    
-    print(Error)
+        Error=absolute(sum(ODC-centroids))
+        if Error>0:
+            itr+=1
+        ODC=copy(centroids)
 
+    
+    errlist.append(sum(minval))
+    itrlist.append(itr)
+    if sum(minval) < opterr:
+        optidx=idx
+        opterr=sum(minval)
+        
+        
+errlist=asarray(errlist)
+itrlist=asarray(itrlist)
+minerrlist=amin(errlist)
+maxerrlist=amax(errlist)
+meanerrlist=average(errlist)
+stderrlist=std(errlist)
+
+minitrlist=amin(itrlist)
+maxitrlist=amax(itrlist)
+meanitrlist=average(itrlist)
+stditrlist=std(itrlist)
+
+print(minerrlist,maxerrlist,meanerrlist,stderrlist)
+
+print(minitrlist,maxitrlist,meanitrlist,stditrlist)
 
 for k in range(K):
 
-    sel=where(idx==k)
+    sel=where(optidx==k)
     Total=len(sel[0])
     lenght=int(sqrt(Total))
     width1=ceil(Total/lenght)
-
-    
+    itemdiv=[len(where((sel[0]<10))[0]),len(where((sel[0]>9) & (sel[0]<20))[0]),len(where((sel[0]>19))[0])]
+    print(sel[0])
+    print(itemdiv)
     for m in range(Total):
         
         X_recovered = X[sel[0][m],:]*255
@@ -87,5 +128,6 @@ for k in range(K):
         plt.axis('Off')
         plt.grid(False)
         plt.imshow(X_recovered)
-    
+        plt.suptitle('Daisy =%s, Sunflower=%s, Roses=%s' %(itemdiv[0],itemdiv[1],itemdiv[2]), fontsize=16)
     plt.show()
+
