@@ -61,8 +61,10 @@ The table below show the values of the key criterias that were tracked and calcu
 
 | Criteria | itrlist | errlist|
 | --- | --- | --- |
-| Min | List all new or modified files |
-| Max | Show file differences that haven't been staged |
+| Min | 1 | 111126 |
+| Max | 9 | 124831 |
+| Average | 2.69 | 116300.95 |
+| Standard Deviation | 1.37 | 3103.11 |
 
 
 
