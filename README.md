@@ -45,8 +45,15 @@ Roses
 </p>
 
 ## Result
-3 centroids are chosen since there are three different flower types
-The initial values for the 3 centroids are randomly chosen from the 30 images of flowers
-The model is run for 100 times with each time the values for the 3 centroids chosen randomly
-At each run, the iteration is carried out 10 times
+3 centroids are chosen since there are three different type of flowers.
+
+The initial values for the 3 centroids are randomly chosen from the 30 images of flowers.
+
+The model is run for 100 times with each time the values for the 3 centroids chosen randomly.
+
+At each run, the iteration is carried out 10 times to find the optimum sum square diffrence between the images and centroids.
+
+The number of iteratiosn required to reach optimillaty is tracked using variable "itrlist".
+
+
 
