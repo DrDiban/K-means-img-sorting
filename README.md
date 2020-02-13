@@ -45,7 +45,7 @@ Roses
 </p>
 
 ## Result
-1) 3 centroids are chosen since there are three different type of flowers.
+1) Three centroids are chosen since there are three different type of flowers.
 
 2) The initial values for the 3 centroids are randomly chosen from the 30 images of flowers.
 
@@ -53,7 +53,16 @@ Roses
 
 4) At each run, the iteration is carried out 10 times to find the optimum sum square diffrence between the images and centroids.
 
-5) The number of iteratiosn required to reach optimillaty is tracked using variable "*itrlist*".
+5) The number of iteratiosn required to reach optimality is tracked using variable "*itrlist*".
+
+6) The sum difference of the optimimum distance of all images to its centroids is tracked using variabe "*errlist*".
+
+The table below show the values of the key criterias that were tracked and calculated.
+
+| Criteria | itrlist | errlist|
+| --- | --- | --- |
+| Min | List all new or modified files |
+| Max | Show file differences that haven't been staged |
 
 
 
